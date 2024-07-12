@@ -1,18 +1,64 @@
 <main>
   <div class="todos">
     <!-- Add Todo -->
-    <form class="todos__form">
-      <input type="text" class="todos__input" placeholder="Add a new task" />
+    <form #form="ngForm" (ngSubmit)="onSubmit(form)" class="todos__form">
+      <input
+        type="text"
+        class="todos__input"
+        placeholder="Add a new task"
+        name="todoText"
+        [(ngModel)]="todoText"
+        #todo="ngModel"
+        minlength="3"
+        required
+      />
       <button type="submit" class="todos__submit">
         <img src="/assets/plus-icon.svg" alt="Plus Icon" />
       </button>
     </form>
+
+    <p
+      class="todos__error-msg"
+      *ngIf="todo.touched && todo.errors?.['required']"
+    >
+      Todo text is required.
+    </p>
+    <p
+      class="todos__error-msg"
+      *ngIf="todo.touched && todo.errors?.['minlength']"
+    >
+      Todo text must be at least 3 characters long.
+    </p>
     <!-- /Add Todo -->
 
     <!-- Todo Tasks -->
-    <section class="todo-tasks">
-      <h2 class="todo-tasks__heading">Tasks to do - 4</h2>
-      <article class="todo-tasks__task">
+    <section class="todo-tasks" *ngIf="(inProgressTodos$ | async)?.length">
+      <h2 class="todo-tasks__heading">
+        Tasks to do - {{ (inProgressTodos$ | async)?.length }}
+      </h2>
+      <article
+        class="todo-tasks__task"
+        *ngFor="let todo of inProgressTodos$ | async; let idx = index"
+      >
+        <p class="todo-tasks__text">{{ todo.text }}</p>
+        <aside>
+          <button
+            type="button"
+            class="todo-tasks__check"
+            (click)="todoCompleteHandler(todo.id)"
+          >
+            <img src="/assets/check-icon.svg" alt="Check Icon" />
+          </button>
+          <button
+            type="button"
+            class="todo-tasks__delete"
+            (click)="todoDeleteHandler(todo.id)"
+          >
+            <img src="/assets/trash-icon.svg" alt="Trash Icon" />
+          </button>
+        </aside>
+      </article>
+      <!-- <article class="todo-tasks__task">
         <p class="todo-tasks__text">To study React fundamentals</p>
         <aside>
           <button type="button" class="todo-tasks__check">
@@ -44,26 +90,17 @@
             <img src="/assets/trash-icon.svg" alt="Trash Icon" />
           </button>
         </aside>
-      </article>
-      <article class="todo-tasks__task">
-        <p class="todo-tasks__text">To study React fundamentals</p>
-        <aside>
-          <button type="button" class="todo-tasks__check">
-            <img src="/assets/check-icon.svg" alt="Check Icon" />
-          </button>
-          <button type="button" class="todo-tasks__delete">
-            <img src="/assets/trash-icon.svg" alt="Trash Icon" />
-          </button>
-        </aside>
-      </article>
+      </article> -->
     </section>
     <!-- /Todo Tasks -->
 
     <!-- Done Tasks -->
-    <section class="done-tasks">
-      <h2 class="done-tasks__heading">Done - 1</h2>
-      <article class="done-tasks__task">
-        <p class="done-tasks__text">To study React fundamentals</p>
+    <section class="done-tasks" *ngIf="(doneTodos$ | async)?.length">
+      <h2 class="done-tasks__heading">
+        Done - {{ (doneTodos$ | async)?.length }}
+      </h2>
+      <article class="done-tasks__task" *ngFor="let todo of doneTodos$ | async">
+        <p class="done-tasks__text">{{ todo.text }}</p>
       </article>
     </section>
     <!-- /Done Tasks -->

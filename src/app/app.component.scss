@@ -16,7 +16,6 @@ main {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 3em;
   }
 
   &__input {
@@ -40,6 +39,10 @@ main {
     border-radius: 0.625em;
     outline: none;
     cursor: pointer;
+  }
+
+  &__error-msg {
+    color: #fff;
   }
 }
 
@@ -75,8 +78,14 @@ main {
   }
 }
 
+.todo-tasks {
+  &__heading {
+    margin-top: 3em;
+  }
+}
+
 .done-tasks {
-  &__task {
+  &__task:nth-last-of-type() {
     margin-bottom: 0;
   }
 
