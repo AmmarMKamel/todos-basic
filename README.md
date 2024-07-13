@@ -1,27 +1,49 @@
-# TodosBasic
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.1.0.
+# Basic Todo List
 
-## Development server
+This is a simple todo list project built using Angular.\
+The goal of this project was to practice using standalone components and NgRx.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
 
-## Code scaffolding
+## Usage
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
-## Build
+You can check the website live [here](https://ammarmkamel.github.io/todos-basic/).
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
 
-## Running unit tests
+## Features
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+- The user is able to add, remove todos.
+- The user is also able to mark todos as completed.
 
-## Running end-to-end tests
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+## Run Locally
 
-## Further help
+Fork the project and clone it
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+```bash
+  git clone https://github.com/<username>/todos-basic.git
+```
+
+Go to the project directory
+
+```bash
+  cd todos-basic
+```
+
+Install dependencies
+
+```bash
+  npm install
+```
+
+Start the server
+
+```bash
+  npm start
+```
+
+
+## Acknowledgements
+
+Credits to [Lucas Vega](https://www.figma.com/@lucasviga) for the design. You can check the design [here](https://www.figma.com/community/file/1348652218299666548/todo-app).
